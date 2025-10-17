@@ -9,6 +9,7 @@ export interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  isLoading: boolean;
   addItem: (movie: Movie) => void;
   removeItem: (movieId: string) => void;
   updateItemQuantity: (movieId: string, quantity: number) => void;

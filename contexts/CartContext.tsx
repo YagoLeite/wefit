@@ -15,14 +15,17 @@ type CartAction =
   | { type: "REMOVE_ITEM"; payload: string }
   | { type: "UPDATE_QUANTITY"; payload: { movieId: string; quantity: number } }
   | { type: "CLEAR_CART" }
-  | { type: "LOAD_CART"; payload: CartItem[] };
+  | { type: "LOAD_CART"; payload: CartItem[] }
+  | { type: "SET_LOADING"; payload: boolean };
 
 interface CartState {
   items: CartItem[];
+  isLoading: boolean;
 }
 
 const initialState: CartState = {
   items: [],
+  isLoading: true,
 };
 
 function cartReducer(state: CartState, action: CartAction): CartState {
@@ -34,6 +37,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 
       if (existingItem) {
         return {
+          ...state,
           items: state.items.map((item) =>
             item.movie.id === action.payload.id
               ? { ...item, quantity: item.quantity + 1 }
@@ -43,18 +47,21 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       }
 
       return {
+        ...state,
         items: [...state.items, { movie: action.payload, quantity: 1 }],
       };
     }
 
     case "REMOVE_ITEM": {
       return {
+        ...state,
         items: state.items.filter((item) => item.movie.id !== action.payload),
       };
     }
 
     case "UPDATE_QUANTITY": {
       return {
+        ...state,
         items: state.items.map((item) =>
           item.movie.id === action.payload.movieId
             ? { ...item, quantity: action.payload.quantity }
@@ -64,10 +71,13 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     }
 
     case "CLEAR_CART":
-      return { items: [] };
+      return { ...state, items: [] };
 
     case "LOAD_CART":
-      return { items: action.payload };
+      return { ...state, items: action.payload, isLoading: false };
+
+    case "SET_LOADING":
+      return { ...state, isLoading: action.payload };
 
     default:
       return state;
@@ -81,18 +91,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Carregar do localStorage na inicialização
   useEffect(() => {
-    const savedCart = localStorage.getItem("wefit-cart");
-    if (savedCart) {
-      try {
-        const cartItems: CartItem[] = JSON.parse(savedCart);
-        console.log("Loaded cart items:", cartItems);
-        dispatch({ type: "LOAD_CART", payload: cartItems });
-      } catch (error) {
-        console.error("Erro ao carregar carrinho:", error);
+    const loadCart = () => {
+      const savedCart = localStorage.getItem("wefit-cart");
+      if (savedCart) {
+        try {
+          const cartItems: CartItem[] = JSON.parse(savedCart);
+          console.log("Loaded cart items:", cartItems);
+          dispatch({ type: "LOAD_CART", payload: cartItems });
+        } catch (error) {
+          console.error("Erro ao carregar carrinho:", error);
+          dispatch({ type: "SET_LOADING", payload: false });
+        }
+      } else {
+        console.log("No saved cart found");
+        dispatch({ type: "SET_LOADING", payload: false });
       }
-    } else {
-      console.log("No saved cart found");
-    }
+    };
+
+    loadCart();
   }, []);
 
   // Função para salvar no localStorage
@@ -112,6 +128,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     items: state.items,
     totalItems,
     totalPrice,
+    isLoading: state.isLoading,
     addItem: (movie: Movie) => {
       const existingItem = state.items.find(
         (item) => item.movie.id === movie.id
