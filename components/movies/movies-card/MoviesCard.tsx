@@ -50,6 +50,7 @@ const MoviesCard = memo(function MoviesCard({ movie }: MoviesCardProps) {
       <Button
         variant={inCart ? "success" : "default"}
         onClick={handleAddToCart}
+        className="min-h-[40px]"
       >
         <span className="flex gap-1">
           <Image
