@@ -1,36 +1,241 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 WeMovies - E-commerce de Filmes
 
-## Getting Started
+Um e-commerce moderno de filmes desenvolvido com Next.js 15, React 19 e TypeScript. Este projeto foi desenvolvido como teste para uma vaga de frontend, implementando uma experiência completa de compra com carrinho, animações e feedback visual.
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15** com App Router
+- **React 19** com TypeScript
+- **Tailwind CSS 4** para estilização
+- **Framer Motion** para animações
+- **TanStack Query** para gerenciamento de estado servidor
+- **Axios** para requisições HTTP
+- **Context API** para gerenciamento de estado global
+
+## ✨ Funcionalidades Implementadas
+
+### 🏠 Página Inicial
+
+- Listagem de filmes em grid responsivo
+- Cards com imagem, título e preço
+- Botão "ADICIONAR AO CARRINHO" com contador animado
+- Animações suaves de entrada dos cards
+
+### 🛒 Sistema de Carrinho
+
+- **Adicionar/remover itens** com persistência no localStorage
+- **Controle de quantidades** com botões +/- personalizados
+- **Cálculo automático** de subtotais e total geral
+- **Contador de itens** no header
+- **Animações de accordion** na remoção de itens
+- **Estado vazio** com componente dedicado
+
+### 🎨 Design System
+
+- **Cores personalizadas**: `we-blue`, `we-green`, `we-gray`
+- **Tipografia**: Open Sans (principal), Geist Mono
+- **Componentes reutilizáveis**: Button, AnimatedCounter, Toast
+- **Layout responsivo** para desktop e mobile
+
+### 🔔 Sistema de Notificações
+
+- **Toast customizado** sem dependências externas
+- **Posicionamento** no canto inferior direito
+- **Animações suaves** de entrada e saída
+- **Múltiplos tipos**: success, error, info
+
+### 📱 Responsividade
+
+- **Layout adaptativo** para todas as telas
+- **Componentes específicos** para mobile e desktop
+- **Breakpoints otimizados** para melhor experiência
+
+## 🏗️ Arquitetura do Projeto
+
+### 📁 Estrutura de Pastas
+
+```
+wefit/
+├── app/                    # App Router (Next.js 15)
+│   ├── cart/              # Página do carrinho
+│   ├── finished-purchase/ # Página de compra realizada
+│   └── layout.tsx         # Layout principal
+├── components/            # Componentes reutilizáveis
+│   ├── cart/             # Componentes do carrinho
+│   ├── movies/           # Componentes de filmes
+│   ├── ui/               # Componentes de interface
+│   └── pages/            # Componentes de página
+├── contexts/             # Contextos React
+│   ├── CartContext.tsx   # Gerenciamento do carrinho
+│   └── ToastContext.tsx  # Gerenciamento de toasts
+├── lib/                  # Utilitários
+│   └── api.ts           # Configuração do Axios
+├── query/               # Queries do TanStack Query
+└── types/               # Definições TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🎯 Padrões Implementados
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Server Components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Página inicial**: Server-side rendering para melhor SEO
+- **Página de compra realizada**: Server component com client component apenas para interatividade
 
-## Learn More
+#### Client Components
 
-To learn more about Next.js, take a look at the following resources:
+- **Carrinho**: Gerenciamento de estado e interatividade
+- **Animações**: Framer Motion para transições suaves
+- **Toasts**: Sistema de notificações
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎬 Animações Implementadas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🛒 Carrinho - Efeito Accordion
 
-## Deploy on Vercel
+```typescript
+// Animação de remoção de itens
+const itemVariants = {
+  exit: {
+    height: 0,
+    opacity: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginBottom: 0,
+    transition: { duration: 0.3 },
+  },
+};
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🎭 Cards de Filmes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Entrada escalonada** com delay progressivo
+- **Hover effects** nos botões
+- **Contador animado** de quantidade
+
+### 🔔 Toast Notifications
+
+- **Entrada**: De baixo para cima
+- **Saída**: Desliza para baixo
+- **Posicionamento**: Canto inferior direito
+
+## 🛠️ Configurações Técnicas
+
+### 🎨 Design System
+
+```css
+:root {
+  --color-surface: #2f2e41;
+  --color-on-surface: #ffffff;
+  --color-we-blue: #009edd;
+  --color-we-green: #039b00;
+  --color-we-gray: #999999;
+}
+```
+
+### 📱 Responsividade
+
+- **Desktop**: Layout em grid com sidebar
+- **Mobile**: Layout em coluna única
+- **Breakpoints**: `max-[450px]`, `md:` (768px+)
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- Node.js 18+
+- npm ou yarn
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone <url-do-repositorio>
+
+# Instale as dependências
+npm install
+
+# Configure as variáveis de ambiente (opcional)
+# Crie um arquivo .env.local com NEXT_PUBLIC_API_BASE_URL
+
+# Execute o servidor de desenvolvimento
+npm run dev
+
+# Acesse http://localhost:3000
+```
+
+### Scripts Disponíveis
+
+```bash
+npm run dev      # Servidor de desenvolvimento
+npm run build    # Build de produção
+npm run start    # Servidor de produção
+npm run lint     # Linting do código
+```
+
+## 📝 Notas de Implementação
+
+### 🔄 Estado de Loading
+
+**Desafio**: O requisito pedia um estado de loading para a tela home, mas como implementamos a requisição no servidor (Server Component), não há necessidade de loading state no cliente.
+
+**Solução**: A página inicial renderiza os dados diretamente no servidor, proporcionando melhor performance e SEO.
+
+### 📦 TanStack Query
+
+**Decisão**: Instalamos o TanStack Query inicialmente pensando que seria necessário para gerenciamento de estado servidor, mas acabou não sendo utilizado.
+
+**Motivo**: A implementação com Server Components e Context API foi suficiente para atender todos os requisitos do projeto.
+
+### 🎯 Otimizações Implementadas
+
+- **Memoização** de componentes pesados
+- **Lazy loading** de imagens
+- **Server-side rendering** para páginas estáticas
+- **Context API** para estado global eficiente
+- **Persistência** no localStorage
+
+## 🎨 Componentes Principais
+
+### 🛒 CartContext
+
+```typescript
+interface CartContextType {
+  items: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+  addItem: (movie: Movie) => void;
+  removeItem: (movieId: string) => void;
+  updateItemQuantity: (movieId: string, quantity: number) => void;
+  clearCart: () => void;
+}
+```
+
+### 🔔 ToastContext
+
+```typescript
+interface ToastContextType {
+  showToast: (message: string, type?: "success" | "error" | "info") => void;
+}
+```
+
+## 🚀 Deploy
+
+O projeto está configurado para deploy em plataformas como Vercel, Netlify ou qualquer provedor que suporte Next.js.
+
+### Variáveis de Ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+
+```bash
+# API Configuration
+NEXT_PUBLIC_API_BASE_URL='api url'
+```
+
+**Nota**: O projeto funciona sem as variáveis de ambiente, usando valores padrão, mas é recomendado configurá-las para maior flexibilidade.
+
+## 📄 Licença
+
+Este projeto foi desenvolvido como teste técnico e não possui licença específica.
+
+---
+
+**Desenvolvido com ❤️ usando Next.js 15 e React 19**
