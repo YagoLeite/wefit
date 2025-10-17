@@ -11,7 +11,7 @@ export default function CartWrapper({ items }: { items: CartItem[] }) {
       scaleY: 0,
       transition: {
         duration: 0.4,
-        ease: [0.4, 0, 0.2, 1],
+        // ease: [0.4, 0, 0.2, 1],
       },
     },
   };
