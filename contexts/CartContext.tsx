@@ -70,7 +70,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Carregar do localStorage na inicialização
   useEffect(() => {
-    console.log("Loading from localStorage...");
     const savedCart = localStorage.getItem("wefit-cart");
     if (savedCart) {
       try {

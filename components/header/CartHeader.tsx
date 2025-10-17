@@ -18,7 +18,7 @@ export default function CartHeader() {
           Meu Carrinho
         </span>
         <div className="flex items-center gap-1 text-sm font-medium text-on-surface">
-          <AnimatedCounter value={totalItems} />
+          <AnimatedCounter value={totalItems || 0} />
           <span>{totalItems === 1 ? "item" : "itens"}</span>
         </div>
       </div>
