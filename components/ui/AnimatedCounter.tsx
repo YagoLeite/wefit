@@ -21,7 +21,7 @@ export default function AnimatedCounter({
           exit={{ y: -20, opacity: 0 }}
           transition={{
             duration: 0.3,
-            ease: "easeOut",
+            ease: [0.4, 0, 0.2, 1],
           }}
           className="block"
         >

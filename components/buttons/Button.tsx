@@ -16,14 +16,14 @@ const circleVariants = {
     scale: 50,
     transition: {
       duration: 0.2,
-      ease: "easeOut",
+      ease: [0.4, 0, 0.2, 1],
     },
   },
   exit: {
     scale: 0,
     transition: {
       duration: 0.2,
-      ease: "easeIn",
+      ease: [0.4, 0, 1, 1],
     },
   },
 };

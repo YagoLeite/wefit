@@ -23,7 +23,7 @@ export default function CartList({ movies }: CartListProps) {
       scale: 0.8,
       transition: {
         duration: 0.2,
-        ease: "easeIn",
+        ease: [0.4, 0, 1, 1],
       },
     },
   };
