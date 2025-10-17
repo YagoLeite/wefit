@@ -22,13 +22,15 @@ export default function CartHeader() {
           <span>{totalItems === 1 ? "item" : "itens"}</span>
         </div>
       </div>
-      <Image
-        src="/svgs/CartIcon.svg"
-        alt="Ícone do carrinho"
-        width={40}
-        height={40}
-        priority
-      />
+      <div className="w-[40px] h-[40px] flex items-center justify-center">
+        <Image
+          src="/svgs/CartIcon.svg"
+          alt="Ícone do carrinho"
+          width={24}
+          height={24}
+          priority
+        />
+      </div>
     </Link>
   );
 }
