@@ -44,7 +44,7 @@ export default function NumberInputController({
         value={value}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        className="w-[62px] h-[26px] text-center border border-[#D9D9D9] rounded text-sm font-medium text-gray-900 focus:outline-none focus:border-we-blue focus:ring-1 focus:ring-we-blue/20"
+        className="w-[62px] h-[26px] max-[450px]:w-[59px] text-center border border-[#D9D9D9] rounded text-sm font-medium text-gray-900 focus:outline-none focus:border-we-blue focus:ring-1 focus:ring-we-blue/20"
       />
 
       {/* Botão de incremento */}
