@@ -47,6 +47,18 @@ export default function CartItem({ movie, quantity }: CartItemProps) {
       <div className="w-full max-w-[348px]">
         <CardSubTotal movie={movie} quantity={quantity} />
       </div>
+      <button
+        onClick={() => removeItem(movie.id)}
+        className="cursor-pointer w-[24px] h-[24px] flex items-center justify-center hover:opacity-70 transition-opacity"
+        aria-label="Remover item do carrinho"
+      >
+        <Image
+          src="/svgs/TrashCanIcon.svg"
+          alt="Remover item"
+          width={18}
+          height={18}
+        />
+      </button>
     </div>
   );
 }
