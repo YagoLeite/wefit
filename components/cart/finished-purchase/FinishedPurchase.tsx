@@ -13,7 +13,7 @@ export default function FinishedPurchase() {
         </h3>
         <div className="w-[294px] h-[307px] max-[450px]:w-[238px] max-[450px]:h-[247px] relative">
           <Image
-            src="/images/finishedpurchase.png"
+            src="/images/FinishedPurchase.png"
             alt="Compra realizada"
             fill
             className="object-cover"
