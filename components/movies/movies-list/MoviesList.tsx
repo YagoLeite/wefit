@@ -30,7 +30,6 @@ const cardVariants = {
 };
 
 export default function MoviesList({ initialData }: { initialData: Movie[] }) {
-  //   console.log("MOVIES LIST RENDERED");
   return (
     <motion.section
       className="flex h-full w-full items-center justify-center gap-4 flex-wrap"

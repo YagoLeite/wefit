@@ -1,12 +1,14 @@
+"use client";
+
 import { CartItem as CartItemType } from "@/types/cart";
 import CartItem from "../cart-item/CartItem";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CartListProps {
   movies: CartItemType[];
 }
 
 export default function CartList({ movies }: CartListProps) {
-  console.log(movies);
   if (movies.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-8">
@@ -15,15 +17,31 @@ export default function CartList({ movies }: CartListProps) {
     );
   }
 
+  const itemVariants = {
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: {
+        duration: 0.2,
+        ease: "easeIn",
+      },
+    },
+  };
+
   return (
     <div className="flex flex-col gap-4">
-      {movies.map((cartItem) => (
-        <CartItem
-          key={cartItem.movie.id}
-          movie={cartItem.movie}
-          quantity={cartItem.quantity}
-        />
-      ))}
+      <AnimatePresence mode="popLayout">
+        {movies.map((cartItem) => (
+          <motion.div
+            key={cartItem.movie.id}
+            variants={itemVariants}
+            exit="exit"
+            layout
+          >
+            <CartItem movie={cartItem.movie} quantity={cartItem.quantity} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 }

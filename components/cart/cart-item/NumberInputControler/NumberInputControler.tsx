@@ -1,6 +1,7 @@
 "use client";
 
 import { useNumberInputController } from "./useNumberInputControler";
+import Image from "next/image";
 
 interface NumberInputControllerProps {
   initialValue?: number;
@@ -32,22 +33,9 @@ export default function NumberInputController({
         type="button"
         onClick={decrement}
         disabled={!canDecrement}
-        className="cursor-pointer w-[18px] h-[18px] rounded-full border-2 border-we-blue flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-we-blue/10 transition-colors"
+        className="cursor-pointer w-[18px] h-[18px] disabled:opacity-50 disabled:cursor-not-allowed  transition-colors"
       >
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2 6H10"
-            stroke="#009EDD"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
+        <Image src="/svgs/MinusIcon.svg" alt="Minus" width={18} height={18} />
       </button>
 
       {/* Input de número */}
@@ -63,22 +51,9 @@ export default function NumberInputController({
       <button
         type="button"
         onClick={increment}
-        className="cursor-pointer w-[18px] h-[18px] rounded-full border-2 border-we-blue flex items-center justify-center hover:bg-we-blue/10 transition-colors"
+        className="cursor-pointer w-[18px] h-[18px] flex items-center justify-center transition-colors"
       >
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M6 2V10M2 6H10"
-            stroke="#009EDD"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
+        <Image src="/svgs/PlusIcon.svg" alt="Plus" width={18} height={18} />
       </button>
     </div>
   );

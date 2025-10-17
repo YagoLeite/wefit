@@ -49,7 +49,7 @@ export default function Button({
     }
   };
   const baseClasses =
-    "relative cursor-pointer overflow-hidden w-full h-[40px] px-2 py-2 rounded-[4px] flex items-center justify-center gap-3 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed box-border";
+    "relative cursor-pointer overflow-hidden h-[40px] px-2 py-2 rounded-[4px] flex items-center justify-center gap-3 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed box-border";
 
   const variantClasses = {
     default: "bg-we-blue text-white hover:bg-we-blue/90",
