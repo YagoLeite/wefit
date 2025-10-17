@@ -11,6 +11,7 @@ export interface CartContextType {
   totalPrice: number;
   addItem: (movie: Movie) => void;
   removeItem: (movieId: string) => void;
+  updateItemQuantity: (movieId: string, quantity: number) => void;
   clearCart: () => void;
   isInCart: (movieId: string) => boolean;
   getItemQuantity: (movieId: string) => number;

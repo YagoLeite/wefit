@@ -12,20 +12,16 @@ export function useNumberInputController({
   const [value, setValue] = useState(initialValue);
 
   const increment = useCallback(() => {
-    setValue((prev) => {
-      const newValue = prev + 1;
-      onChange?.(newValue);
-      return newValue;
-    });
-  }, [onChange]);
+    const newValue = value + 1;
+    setValue(newValue);
+    onChange?.(newValue);
+  }, [value, onChange]);
 
   const decrement = useCallback(() => {
-    setValue((prev) => {
-      const newValue = Math.max(prev - 1, 0);
-      onChange?.(newValue);
-      return newValue;
-    });
-  }, [onChange]);
+    const newValue = Math.max(value - 1, 0);
+    setValue(newValue);
+    onChange?.(newValue);
+  }, [value, onChange]);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

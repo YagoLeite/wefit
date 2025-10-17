@@ -13,6 +13,7 @@ import { Movie } from "@/types/movie";
 type CartAction =
   | { type: "ADD_ITEM"; payload: Movie }
   | { type: "REMOVE_ITEM"; payload: string }
+  | { type: "UPDATE_QUANTITY"; payload: { movieId: string; quantity: number } }
   | { type: "CLEAR_CART" }
   | { type: "LOAD_CART"; payload: CartItem[] };
 
@@ -49,6 +50,16 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case "REMOVE_ITEM": {
       return {
         items: state.items.filter((item) => item.movie.id !== action.payload),
+      };
+    }
+
+    case "UPDATE_QUANTITY": {
+      return {
+        items: state.items.map((item) =>
+          item.movie.id === action.payload.movieId
+            ? { ...item, quantity: action.payload.quantity }
+            : item
+        ),
       };
     }
 
@@ -123,6 +134,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     removeItem: (movieId: string) => {
       const newItems = state.items.filter((item) => item.movie.id !== movieId);
       dispatch({ type: "REMOVE_ITEM", payload: movieId });
+      saveToLocalStorage(newItems);
+    },
+    updateItemQuantity: (movieId: string, quantity: number) => {
+      const newItems = state.items.map((item) =>
+        item.movie.id === movieId ? { ...item, quantity } : item
+      );
+      dispatch({ type: "UPDATE_QUANTITY", payload: { movieId, quantity } });
       saveToLocalStorage(newItems);
     },
     clearCart: () => {

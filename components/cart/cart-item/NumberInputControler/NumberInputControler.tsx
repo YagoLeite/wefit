@@ -32,7 +32,7 @@ export default function NumberInputController({
         type="button"
         onClick={decrement}
         disabled={!canDecrement}
-        className="w-8 h-8 rounded-full border-2 border-we-blue flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-we-blue/10 transition-colors"
+        className="cursor-pointer w-[18px] h-[18px] rounded-full border-2 border-we-blue flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-we-blue/10 transition-colors"
       >
         <svg
           width="12"
@@ -56,14 +56,14 @@ export default function NumberInputController({
         value={value}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        className="w-12 h-8 text-center border border-[#D9D9D9] rounded text-sm font-medium text-gray-900 focus:outline-none focus:border-we-blue focus:ring-1 focus:ring-we-blue/20"
+        className="w-[62px] h-[26px] text-center border border-[#D9D9D9] rounded text-sm font-medium text-gray-900 focus:outline-none focus:border-we-blue focus:ring-1 focus:ring-we-blue/20"
       />
 
       {/* Botão de incremento */}
       <button
         type="button"
         onClick={increment}
-        className="w-8 h-8 rounded-full border-2 border-we-blue flex items-center justify-center hover:bg-we-blue/10 transition-colors"
+        className="cursor-pointer w-[18px] h-[18px] rounded-full border-2 border-we-blue flex items-center justify-center hover:bg-we-blue/10 transition-colors"
       >
         <svg
           width="12"
