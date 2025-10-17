@@ -64,7 +64,7 @@ export function CartBottomRowMobile({ movie, quantity }: CartRowMobileProps) {
         />
       </div>
       <div className="flex flex-col ">
-        <span className="text-[12px] font-[700] text-[#999999]">SUBTOTAL</span>
+        <span className="text-[12px] font-[700] text-we-gray">SUBTOTAL</span>
         <span className="text-[16px] font-[700] text-surface">
           R$ {formattedSubtotal}
         </span>

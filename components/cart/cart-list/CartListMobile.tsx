@@ -13,7 +13,7 @@ export default function CartListMobile({ movies }: CartListMobileProps) {
   if (movies.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-8">
-        <p className="text-gray-500 text-center">Nenhum item no carrinho</p>
+        <p className="text-we-gray text-center">Nenhum item no carrinho</p>
       </div>
     );
   }

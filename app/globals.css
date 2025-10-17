@@ -11,6 +11,7 @@
   --color-on-we-blue: #ffffff;
   --color-we-green: #039b00;
   --color-on-we-green: #ffffff;
+  --color-we-gray: #999999;
   --font-sans: var(--font-open-sans);
   --font-mono: var(--font-geist-mono);
 }

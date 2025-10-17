@@ -27,7 +27,7 @@ export default function CartWrapper({ items }: { items: CartItem[] }) {
       <AnimatePresence mode="popLayout">
         {items.length > 0 && (
           <motion.div key="footer" variants={itemVariants} exit="exit" layout>
-            <div className="w-full border-t border-[#999999] mb-4" />
+            <div className="w-full border-t border-we-gray mb-4" />
             <CartTotal />
           </motion.div>
         )}

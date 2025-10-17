@@ -17,7 +17,7 @@ export default function CartTotal() {
         </Button>
 
         <div className="flex items-center gap-2">
-          <span className="text-[14px] font-[700] text-[#999999]">TOTAL</span>
+          <span className="text-[14px] font-[700] text-we-gray">TOTAL</span>
           <div className="flex items-center">
             <span className="text-[24px] font-[700] text-surface">R$ </span>
             <AnimatedCounter
@@ -31,7 +31,7 @@ export default function CartTotal() {
       {/* Mobile layout */}
       <div className="flex md:hidden flex-col gap-4 w-full">
         <div className="flex items-center justify-between">
-          <span className="text-[14px] font-[700] text-[#999999]">TOTAL</span>
+          <span className="text-[14px] font-[700] text-we-gray">TOTAL</span>
           <div className="flex items-center">
             <span className="text-[24px] font-[700] text-surface">R$ </span>
             <AnimatedCounter
