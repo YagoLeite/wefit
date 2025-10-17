@@ -1,13 +1,7 @@
 import getMoviesList from "@/query/get-movies-list/getMoviesList";
-import { Movie } from "@/types/movie";
-import MoviesList from "@/components/movies/movies-list/MoviesList";
+import HomePage from "@/components/pages/home/HomePage";
 
 export default async function Home() {
   const { products } = await getMoviesList();
-  // console.log("PAGE RENDERED");
-  return (
-    <section className="flex h-full w-full items-center justify-center">
-      <MoviesList initialData={products} />
-    </section>
-  );
+  return <HomePage initialData={products} />;
 }
