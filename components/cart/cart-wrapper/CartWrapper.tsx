@@ -1,13 +1,10 @@
-"use client";
 import CartList from "../cart-list/CartList";
 import CartHeader from "../cart-header/CartHeader";
-import { useCart } from "@/contexts/CartContext";
+import { CartItem } from "@/types/cart";
 import CartTotal from "../cart-total/CartTotal";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function CartWrapper() {
-  const { items } = useCart();
-
+export default function CartWrapper({ items }: { items: CartItem[] }) {
   const itemVariants = {
     exit: {
       opacity: 0,

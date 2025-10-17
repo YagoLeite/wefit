@@ -1,12 +1,9 @@
-"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import CartList from "../cart-list/CartListMobile";
 import CartTotal from "../cart-total/CartTotal";
-import { useCart } from "@/contexts/CartContext";
+import { CartItem } from "@/types/cart";
 
-export default function CartWrapperMobile() {
-  const { items } = useCart();
-
+export default function CartWrapperMobile({ items }: { items: CartItem[] }) {
   const itemVariants = {
     exit: {
       opacity: 0,
