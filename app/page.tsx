@@ -4,6 +4,7 @@ import MoviesList from "@/components/movies/movies-list/MoviesList";
 
 export default async function Home() {
   const { products } = await getMoviesList();
+  // console.log("PAGE RENDERED");
   return (
     <section className="flex h-full w-full items-center justify-center">
       <MoviesList initialData={products} />

@@ -1,13 +1,26 @@
+"use client";
+
 import Image from "next/image";
+import { memo } from "react";
 import { Movie } from "@/types/movie";
 import Button from "@/components/buttons/Button";
+import { useCart } from "@/contexts/CartContext";
 
 interface MoviesCardProps {
   movie: Movie;
 }
 
-export default function MoviesCard({ movie }: MoviesCardProps) {
-  console.log(movie);
+const MoviesCard = memo(function MoviesCard({ movie }: MoviesCardProps) {
+  const { addItem, isInCart, getItemQuantity } = useCart();
+  const inCart = isInCart(movie.id);
+  const quantity = getItemQuantity(movie.id);
+
+  const handleAddToCart = () => {
+    addItem(movie);
+  };
+
+  //   console.log("MOVIES CARD RENDERED");
+
   return (
     <div className="w-full max-w-[339px] h-[324px] bg-white rounded-[4px] p-4 flex flex-col gap-2">
       {/* Container da imagem, nome e preço */}
@@ -33,19 +46,37 @@ export default function MoviesCard({ movie }: MoviesCardProps) {
       </div>
 
       {/* Botão */}
-      <Button variant="success">
-        <span className="flex gap-1">
-          <Image
-            src="/svgs/ShoppingCartIcon.svg"
-            alt="Carregando..."
-            width={13}
-            height={13}
-            priority
-          />
-          <p className="text-[12px] font-[400] ">0</p>
-        </span>
+      <Button
+        variant={inCart ? "success" : "default"}
+        onClick={handleAddToCart}
+      >
+        {inCart ? (
+          <span className="flex gap-1">
+            <Image
+              src="/svgs/ShoppingCartIcon.svg"
+              alt="Carrinho"
+              width={13}
+              height={13}
+              priority
+            />
+            <p className="text-[12px] font-[400]">{quantity}</p>
+          </span>
+        ) : (
+          <span className="flex gap-1">
+            <Image
+              src="/svgs/ShoppingCartIcon.svg"
+              alt="Carrinho"
+              width={13}
+              height={13}
+              priority
+            />
+            <p className="text-[12px] font-[400]">0</p>
+          </span>
+        )}
         <p className="text-[12px] font-[700]">ADICIONAR AO CARRINHO</p>
       </Button>
     </div>
   );
-}
+});
+
+export default MoviesCard;
