@@ -21,7 +21,7 @@ export default function CartWrapper() {
 
   return (
     <motion.div
-      className="w-full h-fit flex flex-col gap-4 bg-[white] rounded-[4px] p-4 md:px-6 gap-[21px] md:gap-[24px]"
+      className="flex w-full h-fit flex-col gap-4 bg-[white] rounded-[4px] p-4 md:px-6 gap-[21px] md:gap-[24px] max-[761px]:hidden"
       layout
     >
       <CartHeader />

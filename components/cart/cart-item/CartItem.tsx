@@ -29,7 +29,7 @@ export default function CartItem({ movie, quantity }: CartItemProps) {
     <div className="flex items-center border-0 max-h-[114px]">
       <div className="flex items-center gap-2 w-full max-w-[280px]">
         <Image src={movie.image} alt={movie.title} width={91} height={114} />
-        <div className="flex flex-col gap-2 h-full justify-center">
+        <div className="flex flex-col gap-2 h-full justify-center min-w-fit">
           <h3 className="text-surface text-[14px] font-[700] ml-4">
             {movie.title}
           </h3>
@@ -49,7 +49,7 @@ export default function CartItem({ movie, quantity }: CartItemProps) {
       </div>
       <button
         onClick={() => removeItem(movie.id)}
-        className="cursor-pointer w-[24px] h-[24px] flex items-center justify-center hover:opacity-70 transition-opacity"
+        className="cursor-pointer w-[24px] h-[24px] min-w-[24px] min-h-[24px] flex items-center justify-center hover:opacity-70 transition-opacity"
         aria-label="Remover item do carrinho"
       >
         <Image

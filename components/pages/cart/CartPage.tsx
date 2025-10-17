@@ -3,7 +3,7 @@ import CartWrapper from "@/components/cart/cart-wrapper/CartWrapper";
 
 export default async function CartPage() {
   return (
-    <main className="w-full h-full">
+    <main className="w-full h-full px-4">
       <CartWrapper />
     </main>
   );
