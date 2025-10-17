@@ -3,6 +3,7 @@ import { Geist_Mono, Open_Sans } from "next/font/google";
 import Header from "@/components/header/Header";
 import Providers from "./providers";
 import { CartProvider } from "@/contexts/CartContext";
+import { ToastProvider } from "@/contexts/ToastContext";
 import "./globals.css";
 
 const openSans = Open_Sans({
@@ -33,16 +34,18 @@ export default function RootLayout({
       >
         <Providers>
           <CartProvider>
-            <div className="flex min-h-screen w-full justify-center">
-              <main className="flex h-full w-full max-w-[1080px] flex-1 pt-0">
-                <div className="flex w-full justify-center">
-                  <div className="w-full min-w-[360px] max-w-[1080px]">
-                    <Header />
-                    {children}
+            <ToastProvider>
+              <div className="flex min-h-screen w-full justify-center">
+                <main className="flex h-full w-full max-w-[1080px] flex-1 pt-0">
+                  <div className="flex w-full justify-center">
+                    <div className="w-full min-w-[360px] max-w-[1080px]">
+                      <Header />
+                      {children}
+                    </div>
                   </div>
-                </div>
-              </main>
-            </div>
+                </main>
+              </div>
+            </ToastProvider>
           </CartProvider>
         </Providers>
       </body>

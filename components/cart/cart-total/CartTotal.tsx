@@ -4,23 +4,43 @@ import { useCart } from "@/contexts/CartContext";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import Button from "@/components/buttons/Button";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/contexts/ToastContext";
+import { useState } from "react";
 
 export default function CartTotal() {
   const { totalPrice, clearCart } = useCart();
   const router = useRouter();
+  const { showToast } = useToast();
+  const [isProcessing, setIsProcessing] = useState(false);
   const formattedTotal = totalPrice.toFixed(2).replace(".", ",");
 
   const handleFinishOrder = () => {
-    clearCart();
-    router.push("/finished-purchase");
+    if (isProcessing) return; // Previne múltiplos cliques
+
+    setIsProcessing(true);
+
+    // Mostra o toast de processamento
+    showToast("Processando sua compra...", "info", 3000);
+
+    // Aguarda 3 segundos antes de finalizar
+    setTimeout(() => {
+      clearCart();
+      router.push("/finished-purchase");
+    }, 3000);
   };
 
   return (
     <div className="w-full flex items-center justify-between">
       {/* Desktop layout */}
       <div className="hidden md:flex items-center justify-between w-full">
-        <Button className="w-[173px] px-2 py-2" onClick={handleFinishOrder}>
-          <p className="text-[12px] font-[700] text-white">FINALIZAR PEDIDO</p>
+        <Button
+          className="w-[173px] px-2 py-2"
+          onClick={handleFinishOrder}
+          disabled={isProcessing}
+        >
+          <p className="text-[12px] font-[700] text-white">
+            {isProcessing ? "PROCESSANDO..." : "FINALIZAR PEDIDO"}
+          </p>
         </Button>
 
         <div className="flex items-center gap-2">
@@ -48,8 +68,14 @@ export default function CartTotal() {
           </div>
         </div>
 
-        <Button className="w-full px-2 py-2" onClick={handleFinishOrder}>
-          <p className="text-[12px] font-[700] text-white">FINALIZAR PEDIDO</p>
+        <Button
+          className="w-full px-2 py-2"
+          onClick={handleFinishOrder}
+          disabled={isProcessing}
+        >
+          <p className="text-[12px] font-[700] text-white">
+            {isProcessing ? "PROCESSANDO..." : "FINALIZAR PEDIDO"}
+          </p>
         </Button>
       </div>
     </div>
