@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import CartHeader from "./CartHeader";
 
 export default function Header() {
   return (
@@ -10,21 +10,7 @@ export default function Header() {
       >
         WeMovies
       </Link>
-      <div className="flex items-center gap-3">
-        <div className="flex flex-col items-end">
-          <span className="hidden text-xs text-on-surface/60 md:block">
-            Meu Carrinho
-          </span>
-          <span className="text-sm font-medium text-on-surface">0 itens</span>
-        </div>
-        <Image
-          src="/images/CartIcon.png"
-          alt="Ícone do carrinho"
-          width={40}
-          height={40}
-          priority
-        />
-      </div>
+      <CartHeader />
     </header>
   );
 }
