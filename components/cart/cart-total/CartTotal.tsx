@@ -3,16 +3,23 @@
 import { useCart } from "@/contexts/CartContext";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import Button from "@/components/buttons/Button";
+import { useRouter } from "next/navigation";
 
 export default function CartTotal() {
-  const { totalPrice } = useCart();
+  const { totalPrice, clearCart } = useCart();
+  const router = useRouter();
   const formattedTotal = totalPrice.toFixed(2).replace(".", ",");
+
+  const handleFinishOrder = () => {
+    clearCart();
+    router.push("/finished-purchase");
+  };
 
   return (
     <div className="w-full flex items-center justify-between">
       {/* Desktop layout */}
       <div className="hidden md:flex items-center justify-between w-full">
-        <Button className="w-[173px] px-2 py-2">
+        <Button className="w-[173px] px-2 py-2" onClick={handleFinishOrder}>
           <p className="text-[12px] font-[700] text-white">FINALIZAR PEDIDO</p>
         </Button>
 
@@ -41,7 +48,7 @@ export default function CartTotal() {
           </div>
         </div>
 
-        <Button className="w-full px-2 py-2">
+        <Button className="w-full px-2 py-2" onClick={handleFinishOrder}>
           <p className="text-[12px] font-[700] text-white">FINALIZAR PEDIDO</p>
         </Button>
       </div>
