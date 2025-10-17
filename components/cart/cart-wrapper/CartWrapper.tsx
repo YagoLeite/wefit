@@ -3,16 +3,38 @@ import CartList from "../cart-list/CartList";
 import CartHeader from "../cart-header/CartHeader";
 import { useCart } from "@/contexts/CartContext";
 import CartTotal from "../cart-total/CartTotal";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CartWrapper() {
   const { items } = useCart();
 
+  const itemVariants = {
+    exit: {
+      opacity: 0,
+      scaleY: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
-    <div className="w-full h-fit flex flex-col gap-4 bg-[white] rounded-[4px] p-4 md:px-6 gap-[21px] md:gap-[24px] ">
+    <motion.div
+      className="w-full h-fit flex flex-col gap-4 bg-[white] rounded-[4px] p-4 md:px-6 gap-[21px] md:gap-[24px]"
+      layout
+    >
       <CartHeader />
       <CartList movies={items} />
-      <div className="w-full border-t border-[#999999]" />
-      <CartTotal />
-    </div>
+
+      <AnimatePresence mode="popLayout">
+        {items.length > 0 && (
+          <motion.div key="footer" variants={itemVariants} exit="exit" layout>
+            <div className="w-full border-t border-[#999999] mb-4" />
+            <CartTotal />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
