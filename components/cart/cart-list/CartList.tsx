@@ -8,6 +8,18 @@ interface CartListProps {
   movies: CartItemType[];
 }
 
+const itemVariants = {
+  exit: {
+    height: 0,
+    opacity: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginBottom: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
 export default function CartList({ movies }: CartListProps) {
   if (movies.length === 0) {
     return (
@@ -16,19 +28,6 @@ export default function CartList({ movies }: CartListProps) {
       </div>
     );
   }
-
-  const itemVariants = {
-    exit: {
-      height: 0,
-      opacity: 0,
-      paddingTop: 0,
-      paddingBottom: 0,
-      marginBottom: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
 
   return (
     <div className="flex flex-col gap-4 overflow-hidden">
