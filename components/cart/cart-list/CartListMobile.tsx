@@ -20,24 +20,26 @@ export default function CartListMobile({ movies }: CartListMobileProps) {
 
   const itemVariants = {
     exit: {
+      height: 0,
       opacity: 0,
-      scale: 0.8,
+      paddingTop: 0,
+      paddingBottom: 0,
+      marginBottom: 0,
       transition: {
-        duration: 0.2,
-        // ease: [0.4, 0, 1, 1],
+        duration: 0.3,
       },
     },
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <AnimatePresence mode="popLayout">
+    <div className="flex flex-col gap-4 overflow-hidden">
+      <AnimatePresence>
         {movies.map((cartItem) => (
           <motion.div
             key={cartItem.movie.id}
             variants={itemVariants}
             exit="exit"
-            layout
+            className="overflow-hidden"
           >
             <CartRowMobile
               movie={cartItem.movie}
