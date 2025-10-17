@@ -1,9 +1,12 @@
-export default function Home() {
+import getMoviesList from "@/query/get-movies-list/getMoviesList";
+import { Movie } from "@/types/movie";
+import MoviesList from "@/components/movies/movies-list/MoviesList";
+
+export default async function Home() {
+  const { products } = await getMoviesList();
   return (
     <section className="flex h-full w-full items-center justify-center">
-      <p className="text-sm uppercase tracking-[0.08em] text-on-surface/60">
-        Conteúdo da home em construção
-      </p>
+      <MoviesList initialData={products} />
     </section>
   );
 }
