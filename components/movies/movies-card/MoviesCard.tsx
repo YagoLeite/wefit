@@ -5,6 +5,7 @@ import { memo } from "react";
 import { Movie } from "@/types/movie";
 import Button from "@/components/buttons/Button";
 import { useCart } from "@/contexts/CartContext";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 interface MoviesCardProps {
   movie: Movie;
@@ -50,29 +51,19 @@ const MoviesCard = memo(function MoviesCard({ movie }: MoviesCardProps) {
         variant={inCart ? "success" : "default"}
         onClick={handleAddToCart}
       >
-        {inCart ? (
-          <span className="flex gap-1">
-            <Image
-              src="/svgs/ShoppingCartIcon.svg"
-              alt="Carrinho"
-              width={13}
-              height={13}
-              priority
-            />
-            <p className="text-[12px] font-[400]">{quantity}</p>
-          </span>
-        ) : (
-          <span className="flex gap-1">
-            <Image
-              src="/svgs/ShoppingCartIcon.svg"
-              alt="Carrinho"
-              width={13}
-              height={13}
-              priority
-            />
-            <p className="text-[12px] font-[400]">0</p>
-          </span>
-        )}
+        <span className="flex gap-1">
+          <Image
+            src="/svgs/ShoppingCartIcon.svg"
+            alt="Carrinho"
+            width={13}
+            height={13}
+            priority
+          />
+          <AnimatedCounter
+            value={quantity || 0}
+            className="text-[12px] font-[400]"
+          />
+        </span>
         <p className="text-[12px] font-[700]">ADICIONAR AO CARRINHO</p>
       </Button>
     </div>
